@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>Tax Calculator</title>
+		<script>
+			function resetForm() {
+				var frmTax = document.getElementByName('taxForm');
+				frmTax['amount'] = frmTax['tax'] = '';
+				frmTax['currency'] = 'Dollar';
+				document.getElementById('result').style.display = 'none';
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<h1>Tax Form (WS2017)</h1>
+            <form name="taxForm" method="POST" action="">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Amount:</td>
+                            <td><input name="amount" type="number" required></td>
+                        </tr>
+                        <tr>
+                            <td>Tax(%):</td>
+                            <td><input name="tax" type="number" required></td>
+                        </tr>
+                        <tr>
+                            <td>Currency:</td>
+                            <td>
+                                <select name="currency">
+                                    <option value="Dollar" selected="selected">Dollar</option>
+									<option value="Euro">Euro</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Calculate"></td>
+                            <td><input type="button" value="Reset" onlick="resetForm()"></td>
+                        </tr>
+                    </tbody>        
+                </table>
+            </form>
+        </div>
+		<div id="result" style="display:none">
+			<hr>
+			<p></p>
+		</div>
+	</body>
+</html>
