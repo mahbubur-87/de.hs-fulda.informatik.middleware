@@ -23,7 +23,6 @@ public class TaxFormV2 extends HttpServlet {
 
     protected final String TAX_FORM_HTML = this.getClass().getResource("tax-form_1.html").getPath();
     
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
