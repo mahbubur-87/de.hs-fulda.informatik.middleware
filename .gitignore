@@ -42,3 +42,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/exer-02/basicservlet/nbproject/private/

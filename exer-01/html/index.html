@@ -1,14 +1,7 @@
 <html>
 	<head>
 		<title>Tax Calculator</title>
-		<script>
-			function resetForm() {
-				var frmTax = document.getElementByName('taxForm');
-				frmTax['amount'] = frmTax['tax'] = '';
-				frmTax['currency'] = 'Dollar';
-				document.getElementById('result').style.display = 'none';
-			}
-		</script>
+		<script type="text/javascript" src="js/main.js"></script>
 	</head>
 	<body>
 		<div>
@@ -35,7 +28,7 @@
                         </tr>
                         <tr>
                             <td><input type="submit" value="Calculate"></td>
-                            <td><input type="button" value="Reset" onlick="resetForm()"></td>
+                            <td><input type="button" value="Reset" onclick="resetForm()"></td>
                         </tr>
                     </tbody>        
                 </table>

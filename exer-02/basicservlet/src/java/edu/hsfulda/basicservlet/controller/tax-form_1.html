@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Tax Calculator</title>
+	</head>
+	<body>
+            <div>
+                <p>
+                    <a href="index.html">Home</a>
+                </p>
+            </div>    
+            <div>
+                <h1>Tax Form (WS2017)</h1>
+                <form id="taxForm" method="POST" action="TaxFormV2">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Amount:</td>
+                                <td><input name="amount" type="number" required></td>
+                            </tr>
+                            <tr>
+                                <td>Tax(%):</td>
+                                <td><input name="tax" type="number" required></td>
+                            </tr>
+                            <tr>
+                                <td>Currency:</td>
+                                <td>
+                                    <select name="currency">
+                                        <option value="Dollar" selected="selected">Dollar</option>
+                                        <option value="Euro">Euro</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="submit" value="Calculate"></td>
+                                <td><input type="reset" value="Reset"></td>
+                            </tr>
+                        </tbody>        
+                    </table>
+                </form>
+            </div>
+            <div>
+                <p>
+                    <input type="button" value="Load Result" onclick="window.location = 'GetResult'">
+                </p> 
+            </div>
+            <div id="result">
+                <hr>
+            </div>
+            <div id="counter">
+            </div>
+	</body>
+</html>
