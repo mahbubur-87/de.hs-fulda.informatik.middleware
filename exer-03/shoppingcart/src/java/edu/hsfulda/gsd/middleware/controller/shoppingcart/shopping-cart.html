@@ -55,7 +55,7 @@ and open the template in the editor.
                             document.getElementById("itm" + index + "Qty").innerHTML = optionList;    
                         }
                         
-                        calculateTotalPrice();
+                        updateCartItems();
                     }
                 };
                 xhttp.open("POST", "inside-my-cart", true);
@@ -63,12 +63,14 @@ and open the template in the editor.
                 xhttp.send(postData);
             }
             
-            function calculateTotalPrice () {
+            function updateCartItems () {
                 
                 var grandTotalPrice = 0.0;
                 var items = document.getElementById("cartItems").rows;
                 
                 for (var i = 1; i < items.length; i++) {
+                    items[i].cells[4].children[0].id = "itm" + i + "Qty";
+                    items[i].cells[4].children[2].setAttribute("onclick", "removeFromCart(" + i + ")");
                     grandTotalPrice += parseFloat(items[i].cells[3].innerHTML);
                 }
                 

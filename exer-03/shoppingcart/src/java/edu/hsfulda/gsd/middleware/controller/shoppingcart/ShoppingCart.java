@@ -153,7 +153,7 @@ public class ShoppingCart extends HttpServlet {
                 }
                 
                 strItem = strItem.concat("</select><br>\n" +
-"                        <input type=\"button\" value=\"Remove From Shopping Cart\" onclick=\"removeFromCart(" + index + ")\"></td>\n" +
+"                        <input type=\"button\" value=\"Remove\" onclick=\"removeFromCart(" + index + ")\"></td>\n" +
 "                    </tr>\n");
                 
                 itmList = itmList.concat(strItem);
