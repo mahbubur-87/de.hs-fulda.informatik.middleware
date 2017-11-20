@@ -9,13 +9,12 @@ and open the template in the editor.
         <title>Item List</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="js/main.js" type="text/javascript"></script>
     </head>
     <body>
-        <div><a href="index.html">Home</a></div>
+        <div><a href="index">Home</a></div>
         <div>
             <h3>Item List</h3>
-            <h4>Total (#itemCount#) items in my shopping cart</h4>
+            <h4>Total (<span id="itemCount">#itemCount#</span>) items in my shopping cart. [<a href="inside-my-cart">My Shopping Cart</a>]</h4>
             <hr>
             <table id="itmList">
                 <thead>
@@ -66,5 +65,23 @@ and open the template in the editor.
                 </tbody>
             </table>    
         </div>
+        <script type="text/javascript">
+            function addToCart (index) 
+            {   
+                var itm = document.getElementById("itmList").rows[index].cells;
+                var postData = "action=ADD&name=" + itm[0].innerHTML + "&price=" + itm[1].innerHTML + 
+                                "&quantity=" + document.getElementById("itm" + index + "Qty").value;
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("itemCount").innerHTML = xhttp.responseText.trim();
+                    }
+                };
+                xhttp.open("POST", "inside-my-cart", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send(postData);
+            }
+        </script>
     </body>
 </html>

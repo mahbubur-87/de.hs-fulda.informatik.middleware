@@ -2,11 +2,27 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>ShoppingCart</servlet-name>
-        <servlet-class>edu.hsfulda.gsd.middleware.controller.ShoppingCart</servlet-class>
+        <servlet-class>edu.hsfulda.gsd.middleware.controller.shoppingcart.ShoppingCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ItemList</servlet-name>
+        <servlet-class>edu.hsfulda.gsd.middleware.controller.itemlist.ItemList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>edu.hsfulda.gsd.middleware.controller.index.Index</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ShoppingCart</servlet-name>
-        <url-pattern>/ShoppingCart</url-pattern>
+        <url-pattern>/inside-my-cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ItemList</servlet-name>
+        <url-pattern>/items</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

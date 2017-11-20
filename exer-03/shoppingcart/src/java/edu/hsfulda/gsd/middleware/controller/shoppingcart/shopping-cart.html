@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Shopping Cart</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div><a href="index">Home</a></div>
+        <div>
+            <h3>Shopping Cart Details</h3>
+            <h4>Total (<span id="itemCount">#itemCount#</span>) items in my shopping cart</h4>
+            <hr>
+            <span id="itemList">#itemList#</span>
+        </div>
+        <script type="text/javascript">
+            function removeFromCart (index) {
+                var cartItems = document.getElementById("cartItems");
+                var itm = cartItems.rows[index].cells;
+                var postData = "action=REMOVE&name=" + itm[0].innerHTML + "&quantity=" + document.getElementById("itm" + index + "Qty").value;
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var res = xhttp.responseText.trim().split(',');
+                        
+                        var itemCount = parseInt(res[1]);
+                        
+                        document.getElementById("itemCount").innerHTML = itemCount;
+
+                        if (0 == itemCount) {
+                            document.getElementById("itemList").innerHTML = "";
+                            return;
+                        }
+                        
+                        var remainingQty = parseInt(res[0]);
+                        
+                        if (0 == remainingQty) {
+                            cartItems.deleteRow(index);
+                        } else {
+                            itm[2].innerHTML = remainingQty;
+                            itm[3].innerHTML = remainingQty * parseFloat(itm[1].innerHTML);
+                            
+                            var i, optionList = '';
+                            
+                            for (i = remainingQty; i > 0; i--) {
+                                optionList = optionList.concat("<option value=\"" + i + "\"" + (remainingQty == i ? (" selected=\"selected\"") : "") + ">" + i + "</option>\n");
+                            }
+                
+                            document.getElementById("itm" + index + "Qty").innerHTML = optionList;    
+                        }
+                        
+                        calculateTotalPrice();
+                    }
+                };
+                xhttp.open("POST", "inside-my-cart", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send(postData);
+            }
+            
+            function calculateTotalPrice () {
+                
+                var grandTotalPrice = 0.0;
+                var items = document.getElementById("cartItems").rows;
+                
+                for (var i = 1; i < items.length; i++) {
+                    grandTotalPrice += parseFloat(items[i].cells[3].innerHTML);
+                }
+                
+                document.getElementById("grandTotalPrice").innerHTML = grandTotalPrice;
+            }
+            
+        </script>
+    </body>
+</html>
