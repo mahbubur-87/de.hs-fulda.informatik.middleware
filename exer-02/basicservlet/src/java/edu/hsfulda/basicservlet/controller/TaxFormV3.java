@@ -23,13 +23,14 @@ import javax.servlet.http.HttpServletResponse;
 public class TaxFormV3 extends TaxFormV2 {
     
     private final String COOKIE_NAME = "usr_hit_count";
-    private static int pageHitCounter = 0;
+    private static int accessCounter = 0;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        pageHitCounter++;
+        processRequest();
+
         int usrHitCount = 1;
         
         if (null != request.getCookies()) {
@@ -51,10 +52,22 @@ public class TaxFormV3 extends TaxFormV2 {
             /* TODO output your page here. You may use following sample code. */
             StringBuffer sb = Utils.readFormFile(TAX_FORM_HTML);
             sb.insert(sb.indexOf("<div id=\"counter\">") + 19, 
-//                    "<h3>Total Page Hit: " + pageHitCounter + " times.</h3><br>" 
-//                        + 
                     "<h3>Total User Hit: " + usrHitCount + " times</h3>");
             out.print(sb.toString());
         }
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    
+        processRequest();
+        super.doPost(request, response);
+    }
+
+    private void processRequest() {
+        
+        accessCounter++;
+        System.out.println("Process Request access count: " + accessCounter + " times");
     }
 }

@@ -44,3 +44,6 @@ nbdist/
 .nb-gradle/
 /exer-02/basicservlet/nbproject/private/
 /exer-03/shoppingcart/nbproject/private/
+/exer-04/taxcalculation/nbproject/private/
+/exer-04/taxcalculation/taxcalculation-war/nbproject/private/
+/exer-04/taxcalculation/taxcalculation-ejb/nbproject/private/

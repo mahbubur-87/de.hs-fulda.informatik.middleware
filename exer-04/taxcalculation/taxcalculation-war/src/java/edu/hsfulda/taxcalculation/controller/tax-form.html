@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Tax Calculator</title>
+	</head>
+	<body>
+            <div>
+                <h1>Tax Form (WS2017)</h1>
+                <form id="taxForm" method="POST" action="TaxForm">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Amount:</td>
+                                <td><input name="amount" type="number" required></td>
+                            </tr>
+                            <tr>
+                                <td>Tax(%):</td>
+                                <td><input name="tax" type="number" required></td>
+                            </tr>
+                            <tr>
+                                <td>Currency:</td>
+                                <td>
+                                    <select name="currency">
+                                        <option value="Dollar" selected="selected">Dollar</option>
+                                        <option value="Euro">Euro</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="submit" value="Calculate"></td>
+                                <td><input type="reset" value="Reset"></td>
+                            </tr>
+                        </tbody>        
+                    </table>
+                </form>
+            </div>
+            <div id="result">
+                <hr>
+            </div>
+	</body>
+</html>
