@@ -36,7 +36,8 @@
 ehthumbs.db
 Thumbs.db
 
-nbproject/private/
+nbproject/
+private/
 build/
 nbbuild/
 dist/
