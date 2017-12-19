@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Item List</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div><a href="/onlineshop">Home</a></div>
+        <div>
+            <h3>Item List</h3>
+            <h4>Total (<span id="itemCount">#itemCount#</span>) items in my shopping cart. [<a href="../onlineshop/cart">My Shopping Cart</a>]</h4>
+            <hr>
+            <table id="itmList">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Item 1</td>
+                        <td>10.00</td>
+                        <td>
+                            <select id="itm1Qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                        <td><input type="button" value="Add" onclick="addToCart(1)"></td>
+                    </tr>
+                    <tr>
+                        <td>Item 2</td>
+                        <td>20.00</td>
+                        <td>
+                            <select id="itm2Qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                        <td><input type="button" value="Add" onclick="addToCart(2)"></td>
+                    </tr>
+                    <tr>
+                        <td>Item 3</td>
+                        <td>30.00</td>
+                        <td>
+                            <select id="itm3Qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </td>
+                        <td><input type="button" value="Add" onclick="addToCart(3)"></td>
+                    </tr>
+                </tbody>
+            </table>    
+        </div>
+        <script type="text/javascript">
+            function addToCart (index) 
+            {   
+                var itm = document.getElementById("itmList").rows[index].cells;
+                var postData = "action=ADD&name=" + itm[0].innerHTML + "&price=" + itm[1].innerHTML + 
+                                "&quantity=" + document.getElementById("itm" + index + "Qty").value;
+                
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("itemCount").innerHTML = xhttp.responseText.trim();
+                    }
+                };
+                
+                xhttp.open("POST", "../onlineshop/cart", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send(postData);
+            }
+        </script>
+    </body>
+</html>

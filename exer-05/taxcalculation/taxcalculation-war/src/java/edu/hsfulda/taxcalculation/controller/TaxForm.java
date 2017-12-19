@@ -5,12 +5,19 @@
  */
 package edu.hsfulda.taxcalculation.controller;
 
+import edu.hsfulda.ai.gsd.middleware.remote.TaxCalculation;
 import edu.hsfulda.gsd.middleware.TaxCalculationBean;
 import edu.hsfulda.gsd.middleware.local.TaxCalculationBeanLocal;
 import edu.hsfulda.taxcalculation.util.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +40,11 @@ public class TaxForm extends HttpServlet {
     @EJB(beanName = "TaxCalculationLocal")
     private TaxCalculationBeanLocal tcbLocal;
     
+    //@EJB(lookup = "java:app/taxcalculation-ejb/TaxCalculationRemote") //!edu.hsfulda.ai.gsd.middleware.remote.TaxCalculation
+    @EJB(beanName = "TaxCalculationRemote")
+    private TaxCalculation tcbRemote;
+
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -52,9 +64,13 @@ public class TaxForm extends HttpServlet {
         StringBuffer resultText = new StringBuffer();
         
         try {
-//            double totalAmount = tcb.calculateTotalAmountWithTax(amount, taxInPercentage);
-            double totalAmount = tcbLocal.calculateTotalAmountWithTax(amount, taxInPercentage);
-            resultText.append("The total amount is ").append(totalAmount).append(" ").append(currency).append(".");
+            double taFrmDirBean = tcb.calculateTotalAmountWithTax(amount, taxInPercentage);
+            double taFrmLocIntf = tcbLocal.calculateTotalAmountWithTax(amount, taxInPercentage);
+            double taFrmRemIntf = tcbRemote.calculateTotalAmountWithTax(amount, taxInPercentage);
+            
+            resultText.append("Direct Bean: The total amount is ").append(taFrmDirBean).append(" ").append(currency).append(".<br>");
+            resultText.append("Local Interface: The total amount is ").append(taFrmLocIntf).append(" ").append(currency).append(".<br>");
+            resultText.append("Remote Interface: The total amount is ").append(taFrmRemIntf).append(" ").append(currency).append(".");
         } catch (RuntimeException re) {
             resultText.append("HTTP 505: Internal Server Error");
         }    
