@@ -52,10 +52,8 @@ public class ShoppingCart extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+    
+    public void displayCartItems (HttpServletResponse response) throws ServletException, IOException {
         File htmlFile = null;
         try {
             htmlFile = new File(this.getClass().getResource(HTML_PAGE_NAME).toURI());
@@ -132,9 +130,44 @@ public class ShoppingCart extends HttpServlet {
         
         response.setContentType("text/html;charset=UTF-8");
             
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println(cartHtmlPage);
+        PrintWriter out = response.getWriter();
+        out.println(cartHtmlPage);
+        out.close();
+    }
+    
+    public void getCartItemsCount (HttpServletResponse response) throws IOException {
+        response.setContentType("text/plain;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println(cart.getItemCount());
+        out.close();
+    }
+    
+    public void resetCart (HttpServletRequest request, HttpServletResponse response) throws IOException {
+        cart.reset();
+        request.getSession().invalidate();
+        response.setContentType("text/plain;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println(1);
+        out.close();
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String action = request.getParameter("action");
+        
+        if (null == action) {
+            displayCartItems(response);
+            return;
+        }
+        
+        switch (Action.valueOf(action)) {
+            case GET_ITM_COUNT: getCartItemsCount(response);
+                                break;
+                                
+            case RESET: resetCart(request, response);
+                        break;
         }
     }
 
@@ -176,11 +209,9 @@ public class ShoppingCart extends HttpServlet {
         cart.addItem(reqParamMap);
         
         response.setContentType("text/plain;charset=UTF-8");
-
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println(cart.getItemCount());
-        }
+        PrintWriter out = response.getWriter();
+        out.println(cart.getItemCount());
+        out.close();
     }
     
     private void doRemove(Map<String, String[]> reqParamMap, HttpServletResponse response) throws IOException {
@@ -191,14 +222,12 @@ public class ShoppingCart extends HttpServlet {
         int reaminingItemQty = cart.removeItem(itemName, qty);
  
         response.setContentType("text/plain;charset=UTF-8");
-
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println(reaminingItemQty + "," + cart.getItemCount());
-        }
+        PrintWriter out = response.getWriter();    
+        out.println(reaminingItemQty + "," + cart.getItemCount());
+        out.close();
     }
 
     private enum Action {
-        ADD, REMOVE
+        ADD, REMOVE, GET_ITM_COUNT, RESET
     }
 }

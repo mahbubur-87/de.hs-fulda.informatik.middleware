@@ -8,6 +8,11 @@ package edu.hsfulda.ai.gsd.middleware;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.PostActivate;
+import javax.ejb.PrePassivate;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 /**
@@ -18,6 +23,33 @@ import javax.ejb.Stateful;
 public class ShoppingCartBean implements ShoppingCartBeanRemote {
 
     private final Collection<Item> items = new LinkedHashSet<>();
+    
+    @PostConstruct
+    public void afterContruct () {
+        System.out.println("edu.hsfulda.ai.gsd.middleware.ShoppingCartBean.afterContruct()");
+    }
+    
+    @PrePassivate
+    public void beforeInactive () {
+        System.out.println("edu.hsfulda.ai.gsd.middleware.ShoppingCartBean.beforeInactive()");
+    }
+    
+    @PostActivate 
+    public void afterActive () {
+        System.out.println("edu.hsfulda.ai.gsd.middleware.ShoppingCartBean.afterActive()");
+    }
+    
+    @PreDestroy
+    public void beforeDestroy () {
+        System.out.println("edu.hsfulda.ai.gsd.middleware.ShoppingCartBean.beforeDestroy()");
+    }
+    
+    @Remove
+    @Override
+    public void reset () {
+        System.out.println("edu.hsfulda.ai.gsd.middleware.ShoppingCartBean.reset()");
+        items.clear();
+    }
     
     @Override
     public int getItemCount() {

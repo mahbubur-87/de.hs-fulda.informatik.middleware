@@ -24,4 +24,5 @@ public interface ShoppingCartBeanRemote {
 
     int getItemCount();
     
+    void reset();
 }

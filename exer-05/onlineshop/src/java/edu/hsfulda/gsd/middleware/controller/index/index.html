@@ -13,9 +13,26 @@ and open the template in the editor.
     <body>
         <div>
             <ul>
-                <li><a href="onlineshop/items">Item List</a></li>
-                <li><a href="onlineshop/cart">Shopping Cart</a></li>
+                <li><a href="../onlineshop/items">Item List</a></li>
+                <li><a href="../onlineshop/cart">Shopping Cart</a></li>
+                <!--<li><a href="#" onclick="resetCart()">Reset Shopping Cart</a></li>-->
             </ul>
         </div>
+        <script type="text/javascript">
+            function resetCart () 
+            {   
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        console.log('cart reset is done.');
+                    }
+                };
+                
+                xhttp.open("GET", "../onlineshop/cart?action=RESET", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send();
+            }
+        </script>
     </body>
 </html>

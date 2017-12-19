@@ -64,11 +64,9 @@ public class Index extends HttpServlet {
         String indexHtml = sb.toString();
         
         response.setContentType("text/html;charset=UTF-8");
-            
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println(indexHtml);
-        }
+        PrintWriter out = response.getWriter();    
+        out.println(indexHtml);
+        out.close();
     }
 
     /**

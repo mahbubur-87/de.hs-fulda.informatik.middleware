@@ -35,9 +35,6 @@ public class ItemList extends HttpServlet {
     
     private final String HTML_PAGE_NAME = "item-list.html";
 
-    @EJB
-    private ShoppingCartBeanRemote cart;
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -67,16 +64,10 @@ public class ItemList extends HttpServlet {
         
         br.close();
         
-        String itemListHtml = sb.toString();
-        
-        itemListHtml = itemListHtml.replace("#itemCount#", "" + cart.getItemCount());
-        
         response.setContentType("text/html;charset=UTF-8");
-            
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println(itemListHtml);
-        }
+        PrintWriter out = response.getWriter();    
+        out.println(sb.toString());
+        out.close();
     }
 
     /**

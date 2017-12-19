@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body onload="getItemCountFromCart()">
         <div><a href="/onlineshop">Home</a></div>
         <div>
             <h3>Item List</h3>
@@ -83,6 +83,21 @@ and open the template in the editor.
                 xhttp.open("POST", "../onlineshop/cart", true);
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send(postData);
+            }
+            
+            function getItemCountFromCart () 
+            {   
+                var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("itemCount").innerHTML = xhttp.responseText.trim();
+                    }
+                };
+                
+                xhttp.open("GET", "../onlineshop/cart?action=GET_ITM_COUNT", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send();
             }
         </script>
     </body>

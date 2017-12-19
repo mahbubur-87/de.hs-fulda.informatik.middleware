@@ -14,7 +14,7 @@ and open the template in the editor.
         <div><a href="/onlineshop">Home</a></div>
         <div>
             <h3>Shopping Cart Details</h3>
-            <h4>Total (<span id="itemCount">#itemCount#</span>) items in my shopping cart</h4>
+            <h4>Total (<span id="itemCount">#itemCount#</span>) items in my shopping cart [<a href="../onlineshop/items">Go to Item List</a>]</h4>
             <hr>
             <span id="itemList">#itemList#</span>
         </div>
@@ -72,7 +72,7 @@ and open the template in the editor.
                 
                 for (var i = 1; i < items.length; i++) {
                     items[i].cells[4].children[0].id = "itm" + i + "Qty";
-                    items[i].cells[4].children[2].setAttribute("onclick", "removeFromCart(" + i + ")");
+                    items[i].cells[4].children[1].setAttribute("onclick", "removeFromCart(" + i + ")");
                     grandTotalPrice += parseFloat(items[i].cells[3].innerHTML);
                 }
                 
