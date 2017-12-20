@@ -64,3 +64,6 @@ nbdist/
 /exer-05/shoppingcart-remote-interface/nbproject/private/
 /exer-05/onlineshop/nbproject/private/
 /exer-05/standaloneshop/nbproject/private/
+/exer-07/taxcalculation-remote-interface/target/
+/exer-07/taxcalculation-ejb/target/
+/exer-07/taxcalculation-web/target/
