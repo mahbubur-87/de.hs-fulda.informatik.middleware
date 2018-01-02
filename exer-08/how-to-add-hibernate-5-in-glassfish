@@ -1,0 +1,40 @@
+Add Hibernate 5.2.12 Final in Java EE 7 and Glassfish 4.1.2(java8 and ee7)
+
+For setup and configuration, please follow the steps given bellow:
+
+1. Add the following hibernate-core maven dependency in pom.xml.
+
+	<dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>5.2.12.Final</version>
+    </dependency>	
+
+2. Copy hibernate-core jar and all dependecy jar files of hibernate-core that are mentioned in maven repository. After that
+paste them in glassfish server domain lib directory. The path is given bellow:
+
+glassfish-4.1.2/glassfish/domains/<my_domain_name>/lib
+
+3. Also put mysql connector jar in "glassfish-4.1.2/glassfish/domains/<my_domain_name>/lib"
+
+4.In ejb container, using admin panel, add mysql jdbc connection pool and jdbc resource / data source.
+
+5. Create presistance.xml. The sample is give bellow:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="gsd_middleware_pu" transaction-type="JTA">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <jta-data-source>mysql_gsd_middleware</jta-data-source>
+    <class>edu.hsfulda.ai.gsd.middleware.taxcalculation.Tax</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform" />
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="update" />
+      <property name="hibernate.show_sql" value="true" />
+    </properties>
+  </persistence-unit>
+</persistence>
+
+6. Now configurations are done and ready for coding. Happy Coding :) ... 
