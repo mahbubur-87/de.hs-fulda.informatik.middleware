@@ -83,3 +83,8 @@ nbdist/
 /exer-08/taxcalculation-remote/target/
 /exer-08/taxcalculation-ejb/target/
 /exer-08/taxcalculation-web/target/
+/exer-06/taxcalculation-ejb/target/
+/exer-06/taxcalculation-web/target/
+/exer-06/taxcalculation-remote/target/
+/exer-06/taxcalculation-mdb/target/
+/exer-06/taxcalculation-standalone/target/
