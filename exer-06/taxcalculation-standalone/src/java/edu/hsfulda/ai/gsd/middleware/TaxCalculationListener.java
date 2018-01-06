@@ -28,6 +28,7 @@ public class TaxCalculationListener implements MessageListener {
         try {
             if (!(message instanceof MapMessage)) {
                 System.out.println("Invalid message is received of type: " + message.getJMSType());
+                return;
             }
             
             System.out.println("Message Received ...");

@@ -7,15 +7,11 @@ package edu.hsfulda.ai.gsd.middleware;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.Resource;
-import javax.ejb.EJB;
+import javax.jms.CompletionListener;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
@@ -120,6 +116,9 @@ public class TaxForm extends HttpServlet {
  
         try (JMSContext context = connection.createContext()) {
             context.createProducer().send(taxQueue, tax);
+            
+//            CompletionListener senderListener = MessageSenderListener.newInstance(response, HTML_PAGE.toString());
+//            context.createProducer().setAsync(senderListener).send(taxQueue, tax);
         }
         
         String taxHtmlPage = HTML_PAGE.toString()
