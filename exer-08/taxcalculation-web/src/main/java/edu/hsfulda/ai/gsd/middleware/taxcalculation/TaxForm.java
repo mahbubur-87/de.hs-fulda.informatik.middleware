@@ -89,7 +89,7 @@ public class TaxForm extends HttpServlet {
 	.append("</body>")
 .append("</html>");
 
-    @EJB
+    @EJB//(lookup = "ejb/TaxCalculationBean")
     private TaxCalculationBeanRemote tcb; 
 
     

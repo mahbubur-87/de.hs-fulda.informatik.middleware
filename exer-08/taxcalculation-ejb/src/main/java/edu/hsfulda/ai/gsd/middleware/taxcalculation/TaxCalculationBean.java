@@ -5,7 +5,6 @@
  */
 package edu.hsfulda.ai.gsd.middleware.taxcalculation;
 
-import java.sql.SQLException;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;

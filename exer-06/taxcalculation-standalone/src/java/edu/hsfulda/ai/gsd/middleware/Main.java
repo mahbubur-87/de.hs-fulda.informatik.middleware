@@ -1,6 +1,7 @@
 package edu.hsfulda.ai.gsd.middleware;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSConsumer;
 import javax.jms.Message;
@@ -18,14 +19,16 @@ public class Main {
     @Resource(mappedName = "taxQueue")
     private static Queue taxQueue;
     
+    @EJB
+    private static TaxCalculationBeanRemote tcb;
+    
     private void consumeMessage () {
         
         try (JMSConsumer consumer = connection.createContext().createConsumer(taxQueue)) {
-            //consumer.setMessageListener(new TaxCalculationListener());
             System.out.println("Waiting for Message ...");
-            Message message = consumer.receive(10);
-            System.out.println("Message Received ...");
-            new TaxCalculationListener().onMessage(message);
+            //consumer.setMessageListener(new TaxCalculationListener());
+            Message message = consumer.receive();
+            new TaxCalculationListener().setTcb(tcb).onMessage(message);
         }
     }
     

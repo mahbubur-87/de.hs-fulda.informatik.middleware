@@ -199,7 +199,9 @@ public class Tax implements Serializable {
         
 //        sb.append(sdf.format(this.getCreatedDate()));
 //        sb.append(",");
-        sb.append(sdf.format(this.getMdbCallDate()));
+//        sb.append(sdf.format(this.getMdbCallDate()));
+//        sb.append(",");
+        sb.append(null == this.getMdbCallDate() ? sdf.format(this.getCreatedDate()) : sdf.format(this.getMdbCallDate()));
         sb.append(",");
         sb.append(df.format(this.getAmountAsDouble()));
         sb.append(",");

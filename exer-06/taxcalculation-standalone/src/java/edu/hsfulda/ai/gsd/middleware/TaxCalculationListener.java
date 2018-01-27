@@ -19,9 +19,14 @@ import javax.jms.MessageListener;
  */
 public class TaxCalculationListener implements MessageListener {
 
-    @EJB
+    //@EJB
     private TaxCalculationBeanRemote tcb;
-    
+
+    public TaxCalculationListener setTcb(TaxCalculationBeanRemote tcb) {
+        this.tcb = tcb;
+        return this;
+    }
+   
     @Override
     public void onMessage(Message message) {
         
@@ -41,9 +46,12 @@ public class TaxCalculationListener implements MessageListener {
             double totalAmount = tcb.doCalculation(tax.getAmountAsDouble(), tax.getTaxRateAsDouble());
             tax.setTotalAmount(BigDecimal.valueOf(totalAmount));
             
-            System.out.println("Latest Record: " + tax.toStringAsCommaSeperated());
+//            System.out.println("Latest Record: " + tax.toStringAsCommaSeperated());
+            
+            tcb.save(tax);
             
             System.out.println("Tax List from CSV");
+            System.out.println(tax.toStringAsCommaSeperated());
             tcb.readFile().forEach(t -> System.out.println(t.toStringAsCommaSeperated()));
             
             System.out.println("Tax List from DB");
