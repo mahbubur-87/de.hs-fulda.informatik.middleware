@@ -1,20 +1,18 @@
-var chkSeq = require('./modules/CheckSequence');
-var chkSub = require('./modules/CheckSubstring');
+var su = require('./modules/string-util');
 
-var mainString = 'somefxuxdxlxamm';
-var sequence = 'fulda';
+var mainString = process.argv[2];
+var sequence = process.argv[3];
 
-var hasAnySeq = chkSeq.hasAnySequence(mainString, sequence);
-var hasSubStr = chkSub.hasSubstring(mainString, sequence);
+console.log("Main String: " + mainString)
+console.log("Sequence: " + sequence)
+
+var hasAnySeq = su.hasAnySequence(mainString, sequence);
+var hasSubStr = su.hasSubstring(mainString, sequence);
 
 if (hasAnySeq && !hasSubStr) {
-	console.log(1);		
-	reutrn;         
+	console.log(1); 
+} else if (hasAnySeq && hasSubStr) {
+	console.log(2); 
+} else {
+	console.log(0);
 }
-
-if (hasAnySeq && hasSubStr) {
-	console.log(2);		
-	reutrn;         
-}
-
-console.log(0);

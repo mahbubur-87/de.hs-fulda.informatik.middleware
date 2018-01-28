@@ -37,7 +37,7 @@ function loadDataInIndexPage (data) {
 						            '</tr>' + 
 						            '<tr>' +  
 						                '<td><input type="submit" value="Calculate"></td>' + 
-						                '<td><input type="button" value="Reset" onlick="resetForm()"></td>' +
+						                '<td><input type="reset"></td>' +
 						            '</tr>' + 
 						        '</tbody>' +         
 						    '</table>' + 
