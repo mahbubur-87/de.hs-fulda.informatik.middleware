@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "author": "mahbubur.rahman",
   "license": "MIT",
   "devDependencies": {
+    "body-parser": "^1.18.2",
     "nodemon": "^1.14.11"
   },
   "dependencies": {

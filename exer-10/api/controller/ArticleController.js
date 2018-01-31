@@ -17,7 +17,7 @@ function get(req, res) {
 	
 	var id = req.params.id;
 
-	article.findById(connection, id, function(err, article) {
+	article.findById(connection, id, req.query, function(err, article) {
 		
 		if (err) {
 			
@@ -63,7 +63,7 @@ function getPages(req, res) {
 
 	var articleId = req.params.id;
 
-	article.findPages(connection, articleId, function(err, pages) {
+	article.findPages(connection, articleId, req.query, function(err, pages) {
 		
 		if (err) {
 			
@@ -78,9 +78,9 @@ function getPages(req, res) {
 function getPage(req, res) {
 
 	var articleId = req.params.id;
-	var pageId = req.params.pageId;
+	var pageNumber = req.params.pageNumber;
 
-	article.findPageById(connection, articleId, pageId, function(err, page) {
+	article.findPageByNumber(connection, articleId, pageNumber, req.query, function(err, page) {
 		
 		if (err) {
 			
@@ -111,9 +111,9 @@ function createPage(req, res) {
 function updatePage(req, res) {
 
 	var articleId = req.params.id;
-	var pageId = req.params.pageId;
+	var pageNumber = req.params.pageNumber;
 
-	article.modifyPage(connection, articleId, pageId, req.body, function(err, page) {
+	article.modifyPage(connection, articleId, pageNumber, req.query, req.body, function(err, page) {
 		
 		if (err) {
 			

@@ -9,3 +9,4 @@
 {"amount":12000,"taxRate":12,"totalAmount":13440,"currency":"Euro","date":"Sun Jan 28 2018 15:11:15 GMT+0100 (CET)","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36"}
 {"amount":1891,"taxRate":5,"totalAmount":1985.55,"currency":"Dollar","date":"Sun Jan 28 2018 15:13:56 GMT+0100 (CET)","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36"}
 {"amount":1254000,"taxRate":13,"totalAmount":1417020,"currency":"Dollar","date":"Sun Jan 28 2018 15:18:49 GMT+0100 (CET)","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36"}
+{"amount":10000,"taxRate":5,"totalAmount":10500,"currency":"Euro","date":"Wed Jan 31 2018 10:56:44 GMT+0100 (CET)","userAgent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.109 Safari/537.36"}
