@@ -36,6 +36,9 @@
 ehthumbs.db
 Thumbs.db
 
+# node js
+node_modules/ 
+
 nbproject/
 private/
 build/
